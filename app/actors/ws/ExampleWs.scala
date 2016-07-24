@@ -1,5 +1,6 @@
 package actors.ws
 
+import akka.actor.ActorRef
 import play.api.libs.iteratee._
 import play.api.libs.json._
 import play.api.mvc.RequestHeader
@@ -14,7 +15,7 @@ class ExampleWs extends WSManagerActor {
   import ExampleWs._
   import WSClientMsgs._
  
-  override def operative(implicit request: RequestHeader) = {
+  override def operative(implicit request: RequestHeader): (ActorRef) => PartialFunction[Any, Unit] = {
     (wsClient) => { 
     case AlertOnlyMe(uuid) =>
       for {

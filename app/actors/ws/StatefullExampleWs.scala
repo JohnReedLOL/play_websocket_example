@@ -11,13 +11,13 @@ object StatefullExampleWs extends WebSocketManager[StatefullExampleWs]  {
 
 class StatefullExampleWs extends StatefullWSManagerActor {
   
-  def wsDevice = Props(WsDevice())
+  def wsDevice: Props = Props(WsDevice())
  
   case class WsDevice() extends Actor {
   
   import StatefullExampleWs._
   import WSClientMsgs._
-  def receive = {
+  def receive: PartialFunction[Any, Unit] = {
     manageBroadcast orElse {
     case x: JsFromClient =>
       (x.request.session.get("uuid")) match {
