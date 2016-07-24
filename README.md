@@ -1,4 +1,4 @@
-Play Websocket Example
+Play Websocket Example [![Build Status](https://travis-ci.org/JohnReedLOL/play_websocket_example.svg?branch=master)](https://travis-ci.org/JohnReedLOL/play_websocket_example)
 ======================
 
 A simple WebSocket plugin bootstrap
