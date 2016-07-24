@@ -1,5 +1,6 @@
 package controllers
 
+import actors.ws.{ExampleWs, StatefullExampleWs}
 import play.api._
 import play.api.mvc._
 import play.api.libs.json._
@@ -21,27 +22,23 @@ object Application extends Controller {
       )
   }
   
-  def ws: WebSocket[JsValue] =
-    WebSocket.async[JsValue] {implicit request => 
-	  actors.ws.ExampleWs.control
-  }
+  def ws: WebSocket[JsValue] = WebSocket.async[JsValue] {
+    (request: RequestHeader) =>
+	  ExampleWs.control(request)
+  }(WebSocket.FrameFormatter.jsonFrame)
   
   def statefullWs: WebSocket[JsValue] =
     WebSocket.async[JsValue] {implicit request => 
-	  actors.ws.StatefullExampleWs.control
+	  StatefullExampleWs.control
   }
   
   def testBroadCast: Action[AnyContent] = Action {
-    import actors.ws.ExampleWs
-    import actors.ws.ExampleWs._
-    ExampleWs.actor ! AlertForSomething
+    ExampleWs.actor ! ExampleWs.AlertForSomething
     Ok("Msg2 Sent")
   }
   
   def testBroadCastStatefull: Action[AnyContent] = Action {
-    import actors.ws.StatefullExampleWs
-    import actors.ws.StatefullExampleWs._
-    StatefullExampleWs.actor ! AlertForSomething
+    StatefullExampleWs.actor ! StatefullExampleWs.AlertForSomething
     Ok("Msg2 Sent to statefull")
   }
 }

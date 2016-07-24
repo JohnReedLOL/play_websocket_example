@@ -4,6 +4,7 @@ import akka.actor.ActorRef
 import play.api.libs.iteratee._
 import play.api.libs.json._
 import play.api.mvc.RequestHeader
+import scala.trace._
 
 object ExampleWs extends WebSocketManager[ExampleWs]  {
   case object AlertForSomething

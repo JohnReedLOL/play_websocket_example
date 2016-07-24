@@ -3,6 +3,7 @@ package actors.ws
 import play.api.libs.json._
 import play.api.mvc.RequestHeader
 import akka.actor._
+import scala.trace._
 
 object StatefullExampleWs extends WebSocketManager[StatefullExampleWs]  {
   case object AlertForSomething
