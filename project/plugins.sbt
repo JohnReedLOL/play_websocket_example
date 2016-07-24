@@ -1,5 +1,5 @@
 // Comment to get more information during initialization (was warn)
-logLevel := sbt.Level.Info
+logLevel := sbt.Level.Debug
 
 // The Typesafe repository 
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
