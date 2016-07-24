@@ -1,0 +1,27 @@
+name := """websocket_example"""
+
+version := "1.1"
+
+lazy val root: Project = (project in file(".")).enablePlugins(play.PlayScala)
+
+scalaVersion := "2.10.4"
+
+// resolvers += "johnreed2 bintray" at "http://dl.bintray.com/content/johnreed2/maven"
+
+resolvers += Resolver.url("TPTeam Repository", url("http://tpteam.github.io/snapshots/"))(Resolver.ivyStylePatterns)
+
+// libraryDependencies += "com.github.johnreedlol" %% "scala-trace-debug" % "3.0.3"
+
+libraryDependencies ++= Seq(
+  jdbc,
+  anorm,
+  cache,
+  ws,
+  "com.typesafe.slick" %% "slick" % "2.1.0",
+  "com.typesafe.play" %% "play-slick" % "0.8.0",
+  "websocket_plugin" %% "websocket_plugin" % "0.4.0", // this requires scala 2.10
+  // "websocket_plugin" %% "websocket_plugin" % "0.4.0", // this does not come in 2.11
+  // recommended upgrade: "org.postgresql" % "postgresql" % "9.4-1201-jdbc4"
+  "org.postgresql" % "postgresql" % "9.3-1102-jdbc4",
+  "com.amazonaws" % "aws-java-sdk" % "1.3.11"
+)
